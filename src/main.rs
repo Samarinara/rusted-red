@@ -63,3 +63,17 @@ fn exit_game() {
     println!("Exiting...");
     std::process::exit(0)
 }
+
+pub fn y_n() -> Option<bool>{
+    let mut sure = String::new();
+    io::stdin()
+        .read_line(&mut sure)
+        .expect("Oops");
+    sure = sure.trim().to_uppercase();
+    println!("{}", sure);
+    match sure.as_str() {
+        "Y" => return Some(true),
+        "N" => return Some(false),
+        _ => return None,
+    }
+}

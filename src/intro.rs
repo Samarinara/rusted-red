@@ -15,11 +15,29 @@ pub fn begin() {
     println!("\n\n\n");
     println!("\t\tOak");
     println!("My apologies...\nCould you remind me of your name?");
-    print!("\nPlease enter your name: ");
-    io::stdout().flush().expect("Failed to flush");
-    let mut name = String::new();
-    io::stdin()
-        .read_line(&mut name)
-        .expect("Oops");
-    println!("\nOh, your name is {}?", name.trim());
+
+    'name: loop {
+        print!("\nPlease enter your name: ");
+        io::stdout().flush().expect("Failed to flush");
+        let mut name = String::new();
+        io::stdin()
+            .read_line(&mut name)
+            .expect("Oops");
+        
+        'sure: loop{
+            println!("\nYour name is {}? [y/n]", name.trim());
+            print!(">> ");
+            io::stdout().flush().expect("Failed to flush");
+
+            match crate::y_n() {
+               Some(true) => {break 'name},
+               Some(false) => {break 'sure},
+               None => println!("Try inputting either a 'y' or an 'n'"),
+            }
+        }
+    }
+    
+    println!("Great! It's good that we cleared that up. ")
 }
+
+
