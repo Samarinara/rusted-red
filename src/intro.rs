@@ -6,12 +6,9 @@ pub fn begin() {
     println!("Hello there!");
     println!("Welcome to the world of Pokémon!\nMy name is Oak!\nPeople call me the Pokémon Professor!");
     println!("\nThis world is inhabited by creatures called Pokémon!\nFor some people, Pokémon are pets. Other use them for fights.\nMyself… I study Pokémon as a profession.");
-    println!("<Press any key to continue>");
-    
-    let mut dummy = String::new();
-    io::stdin()
-        .read_line(&mut dummy)
-        .expect("Oops");
+
+    crate::press_to_continue();
+
     println!("\n\n\n");
     println!("\t\tOak");
     println!("My apologies...\nCould you remind me of your name?");
@@ -37,7 +34,8 @@ pub fn begin() {
         }
     }
     
-    println!("Great! It's good that we cleared that up. ")
+    println!("\nGreat! It's good that we cleared that up. ");
+    println!("")
 }
 
 

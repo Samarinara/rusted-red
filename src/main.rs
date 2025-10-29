@@ -70,10 +70,18 @@ pub fn y_n() -> Option<bool>{
         .read_line(&mut sure)
         .expect("Oops");
     sure = sure.trim().to_uppercase();
-    println!("{}", sure);
     match sure.as_str() {
         "Y" => return Some(true),
         "N" => return Some(false),
         _ => return None,
     }
+}
+
+pub fn press_to_continue() {
+    println!("\n<Press any key to continue>");
+    
+    let mut dummy = String::new();
+    io::stdin()
+        .read_line(&mut dummy)
+        .expect("Oops");   
 }
