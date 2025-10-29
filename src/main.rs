@@ -1,7 +1,8 @@
-use std::io;
+use std::io::{self, Write};
 
 mod intro;
 mod scenes;
+
 
 // All the scenes
 
@@ -29,16 +30,14 @@ pub fn main_menu() {
     println!("");
    
     loop {
-        println!("Enter the number of the menu option you want: ");
-        let mut input = String::new();
-        io::stdin()
-            .read_line(&mut input)
-            .expect("Failed to read line");
+        let input = input_value("Enter the number of the menu option you want: ");
+
         match input.trim() {
             "1" => {new_game(); break},
             "2" => {load_game(); break},
             "3" => {display_options(); break},
             "0" => {exit_game(); break},
+            "edit" => {scenes::template::edit_scenes(); break},
             _ => println!("Invalid choice. Please try again")
         }
     }
@@ -93,4 +92,16 @@ pub fn press_to_continue() {
         .read_line(&mut dummy)
         .expect("Oops");   
 }
+
+pub fn input_value(prompt: &str) -> String {
+    print!("{}", prompt);
+    io::stdout().flush().expect("Failed to flush");
+    let mut value = String::new();
+    io::stdin()
+        .read_line(&mut value)
+        .expect("Oops");
+    println!("{}", value);
+    return value
+}
+
 
