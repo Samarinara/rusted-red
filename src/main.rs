@@ -1,6 +1,7 @@
 use std::io;
 
 mod intro;
+mod scene_manager;
 
 fn main() {
     print!("{}[2J", 27 as char);
@@ -85,3 +86,4 @@ pub fn press_to_continue() {
         .read_line(&mut dummy)
         .expect("Oops");   
 }
+
