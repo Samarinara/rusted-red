@@ -15,10 +15,10 @@ fn main() {
     println!(" \\_|  |_/\\__,_|_|_| |_| \\_|  |_/\\___|_| |_|\\__,_|  ");
     println!("");
 
-    println!("0: New game (Previous game will be deleted)");
-    println!("1: Load Game");
-    println!("2: Options");
-    println!("3: Exit game");
+    println!("1: New game (Previous game will be deleted)");
+    println!("2: Load Game");
+    println!("3: Options");
+    println!("0: Exit game");
     println!("");
    
     loop {
@@ -28,10 +28,10 @@ fn main() {
             .read_line(&mut input)
             .expect("Failed to read line");
         match input.trim() {
-            "0" => {new_game(); break},
-            "1" => {load_game(); break},
-            "2" => {display_options(); break},
-            "3" => {exit_game(); break},
+            "1" => {new_game(); break},
+            "2" => {load_game(); break},
+            "3" => {display_options(); break},
+            "0" => {exit_game(); break},
             _ => println!("Invalid choice. Please try again")
         }
     }
