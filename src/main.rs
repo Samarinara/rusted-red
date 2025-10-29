@@ -6,6 +6,10 @@ mod scenes;
 // All the scenes
 
 fn main() {
+    main_menu();
+}
+
+pub fn main_menu() {
     print!("{}[2J", 27 as char);
     
     println!("  *    P O K E M O N :  R U S T E D   R E D    *");
