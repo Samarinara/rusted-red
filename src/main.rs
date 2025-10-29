@@ -1,7 +1,9 @@
 use std::io;
 
 mod intro;
-mod scene_manager;
+mod scenes;
+
+// All the scenes
 
 fn main() {
     print!("{}[2J", 27 as char);
@@ -46,6 +48,7 @@ fn new_game(){
 
 fn load_game() {
     println!("Loading saved game...");
+    scenes::load_scene("placeholder");
 }
 
 fn display_options() {

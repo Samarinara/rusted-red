@@ -1,5 +1,5 @@
 use std::io::{self, Write};
-use crate::scene_manager;
+use crate::scenes;
 
 pub fn begin() {    
     print!("{}[2J", 27 as char);
@@ -59,7 +59,7 @@ pub fn begin() {
     }
     println!("Ah of course I remember {} now.\nI must've taken a couple too many rock smashes to the head. \nHa Ha!", rival_name);
     println!("\nWelcome to the world of Pokemon! See you soon.");
-    scene_manager::load_scene("playerHouse");
+    scenes::load_scene("placeholder");
 }
 
 
