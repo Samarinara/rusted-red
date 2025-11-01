@@ -1,3 +1,4 @@
+
 use std::io::{self, Write};
 
 mod intro;
@@ -15,8 +16,8 @@ pub fn main_menu() {
     
     println!("  *    P O K E M O N :  R U S T E D   R E D    *");
     println!("");
-    println!(" ___  ___      _        ___  ___                   ");
-    println!(" |  \\/  |     (_)       |  \\/  |                   ");
+    println!(" ___  ___               ___  ___                   ");
+    println!(" |  \\/  |     ( )       |  \\/  |                   ");
     println!(" | .  . | __ _ _ _ __   | .  . | ___ _ __  _   _   ");
     println!(" | |\\/| |/ _` | | '_ \\  | |\\/| |/ _ \\ '_ \\| | | |  ");
     println!(" | |  | | (_| | | | | | | |  | |  __/ | | | |_| |  ");
@@ -103,5 +104,4 @@ pub fn input_value(prompt: &str) -> String {
     println!("{}", value);
     return value
 }
-
 

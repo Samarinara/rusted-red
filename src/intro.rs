@@ -59,7 +59,7 @@ pub fn begin() {
     }
     println!("Ah of course I remember {} now.\nI must've taken a couple too many rock smashes to the head. \nHa Ha!", rival_name);
     println!("\nWelcome to the world of Pokemon! See you soon.");
-    scenes::load_scene("placeholder");
+    scenes::load_scene("player_room");
 }
 
 

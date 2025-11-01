@@ -26,6 +26,39 @@ fn create_location() -> io::Result<()> {
     let mut file = File::create("src/scenes/".to_owned() + &name + ".rs")?;
     let template = r#"pub fn load() {
     print!("This is a template");
+    println!("-- Long beautiful description --");
+    println!(" - Title - \n");
+    println!("1) Option 1");
+    println!("2) Option 2");
+    println!("3) Option 3");
+    println!("4) Option 4");
+    println!("0) Return to Main Menu");
+    let choice = crate::input_value(">> ");
+    match choice.as_str().trim() {
+        "1" => {option_1();},
+        "2" => {option_2();},
+        "3" => {option_3();},
+        "4" => {option_4();},
+        "0" => {crate::main_menu();},
+    }
+    
+    fn option_1() {
+        println!("option_1");
+    }
+
+    fn option_2() {
+        println!("option_2");
+    }
+
+    fn option_3() {
+        println!("option_3");
+    }
+
+    fn option_4() {
+        println!("option_4");
+    }
+
+
 }"#;
     file.write_all(template.as_bytes())?;
     println!("File created successfully");
