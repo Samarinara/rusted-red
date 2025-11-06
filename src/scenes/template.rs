@@ -49,17 +49,20 @@ fn create_location() -> io::Result<()> {
     let mut file = File::create("src/scenes/".to_owned() + &location + "/" + &name + ".rs")?;
     let template = r#"
 pub fn load() {
+    println!("loading a new location...");
+    menu()
+}
+pub fn menu() {
     print!("{}[2J", 27 as char);
-    println!("This is a template");
-    println!("-- Long beautiful description --");
     println!(" - Title - \n");
-    println!("1) Option 1");
-    println!("2) Option 2");
-    println!("3) Option 3");
-    println!("4) Option 4");
-    println!("0) Return to Main Menu");
+    println!("-- Long beautiful description --\n");
+    println!("  1) Option 1");
+    println!("  2) Option 2");
+    println!("  3) Option 3");
+    println!("  4) Option 4");
+    println!("  0) Return to Main Menu");
     loop{
-        let choice = crate::input_value(">> ");
+        let choice = crate::input_value("\n>> ");
         match choice.as_str().trim() {
             "1" => {option_1(); break},
             "2" => {option_2(); break},

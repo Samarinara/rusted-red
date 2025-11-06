@@ -1,16 +1,19 @@
 
 pub fn load() {
+    println!("loading a new location...");
+    menu()
+}
+pub fn menu() {
     print!("{}[2J", 27 as char);
-    println!("This is a template");
-    println!("-- Long beautiful description --");
-    println!(" - Title - \n");
-    println!("1) Option 1");
-    println!("2) Option 2");
-    println!("3) Option 3");
-    println!("4) Option 4");
-    println!("0) Return to Main Menu");
+    println!(" - Your Room - \n");
+    println!("It's a bit messy, but it's home.\n");
+    println!("  1) Go downstairs");
+    println!("  2) Fiddle with the clock");
+    println!("  3) Clean your room");
+    println!("  4) Watch something on TV");
+    println!("  0) Return to Main Menu");
     loop{
-        let choice = crate::input_value(">> ");
+        let choice = crate::input_value("\n>> ");
         match choice.as_str().trim() {
             "1" => {option_1(); break},
             "2" => {option_2(); break},
@@ -24,19 +27,34 @@ pub fn load() {
 }   
 
 fn option_1() {
-    println!("option_1");
+    crate::scenes::load_scene("player_house");
 }
 
 fn option_2() {
-    println!("option_2");
+    print!("{}[2J", 27 as char);
+    println!("Wow... that's a clock\nWhat was supposed to be interesting here?\n");
+    crate::press_to_continue();
+    menu();
 }
 
 fn option_3() {
-    println!("option_3");
+    print!("{}[2J", 27 as char);
+    println!("*Cleaning noises*\n");
+    crate::press_to_continue();
+    print!("{}[2J", 27 as char);
+    println!("The room looks a little bit cleaner?\nYou still wouldn't call it clean");
+    crate::press_to_continue();
+    menu();
 }
 
 fn option_4() {
-    println!("option_4");
+    print!("{}[2J", 27 as char);
+    println!("So violent...\nNintendo would never approve this programming\n");
+    crate::press_to_continue();
+    print!("{}[2J", 27 as char);
+    println!("Now off to the regular PG adventure\n");
+    crate::press_to_continue();
+    menu();
 }
 
 

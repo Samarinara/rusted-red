@@ -52,7 +52,7 @@ fn new_game(){
 
 fn load_game() {
     println!("Loading saved game...");
-    scenes::load_scene("pewter_city_outside");
+    scenes::load_scene("player_room");
 }
 
 fn display_options() {
