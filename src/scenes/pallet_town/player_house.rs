@@ -5,12 +5,12 @@ pub fn load() {
 }
 pub fn menu() {
     print!("{}[2J", 27 as char);
-    println!(" - Title - \n");
-    println!("-- Long beautiful description --\n");
-    println!("  1) Option 1");
-    println!("  2) Option 2");
-    println!("  3) Option 3");
-    println!("  4) Option 4");
+    println!(" - Your House - \n");
+    println!("Your living room is much nicer than your bedroom.\nYour mom sits at the table reading a book.\n");
+    println!("  1) Go outside");
+    println!("  2) Talk to your Mom");
+    println!("  3) Go back upstairs");
+    println!("  4) Check the fridge");
     println!("  0) Return to Main Menu");
     loop{
         let choice = crate::input_value("\n>> ");
@@ -27,19 +27,26 @@ pub fn menu() {
 }   
 
 fn option_1() {
-    println!("option_1");
+    crate::scenes::load_scene("pallet_town_outside");
 }
 
 fn option_2() {
-    println!("option_2");
+    print!("{}[2J", 27 as char);
+    println!("\t- Mom -");
+    println!("\nOh honey, you look tired. Have a rest");
+    crate::press_to_continue();
+    menu();
 }
 
 fn option_3() {
-    println!("option_3");
+    crate::scenes::load_scene("player_room");
 }
 
 fn option_4() {
-    println!("option_4");
+    print!("{}[2J", 27 as char);
+    println!("Darn\nEmpty\n");
+    crate::press_to_continue();
+    menu();
 }
 
 

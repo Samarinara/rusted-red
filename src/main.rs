@@ -3,6 +3,8 @@ use std::io::{self, Write};
 
 mod intro;
 mod scenes;
+mod routes;
+mod saves;
 
 
 // All the scenes
@@ -52,7 +54,7 @@ fn new_game(){
 
 fn load_game() {
     println!("Loading saved game...");
-    scenes::load_scene("player_room");
+    scenes::load_scene(saves::get_prev_scene().as_str());
 }
 
 fn display_options() {
