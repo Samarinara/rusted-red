@@ -5,6 +5,7 @@ pub mod template;
 
 pub fn load_scene(scene: &str) {
     println!("Loading {}...", scene);
+    crate::saves::save_game(&scene);
     match scene {
 // Add scenes here
         "pallet_town_outside" => pallet_town::load_pallet_town_outside(),

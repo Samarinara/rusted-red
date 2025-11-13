@@ -1,3 +1,8 @@
 {
-  "prev_scene": "player_room"
+
+  "prev_scene": "pallet_town_outside",
+
+  "current_scene": "player_house"
+
 }
+
