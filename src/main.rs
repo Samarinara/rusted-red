@@ -54,7 +54,11 @@ fn new_game(){
 
 fn load_game() {
     println!("Loading saved game...");
-    scenes::load_scene(saves::get_prev_scene().as_str());
+    let prev_scene = saves::get_prev_scene();
+    match prev_scene{
+        Ok(prev_scene) => {scenes::load_scene(&prev_scene.as_str());}
+        Err(e) => {println!("No scene Found: {}", e); exit_game();}
+    }
 }
 
 fn display_options() {

@@ -1,22 +1,26 @@
-use std::fs::{File, self, read_to_string};
-use std::io::{self, Write, BufWriter};
+use std::fs::{self, File, read_to_string};
+use std::io::{self, BufWriter, Write};
 use std::path::Path;
 
 const INVALID_CHARS: &[char] = &['<', '>', ':', '"', '/', '\\', '|', '?', '*', '.'];
 
-pub fn edit_scenes() { 
+pub fn edit_scenes() {
     print!("{}[2J", 27 as char);
     println!("\tWelcome to the scene editing wizard");
     println!("1) Create Location");
     println!("2) Create Route -TBD");
     println!("3) Delete Scene -TBD");
     println!("0) Return to main menu");
-    
+
     let choice = crate::input_value(">> ");
     println!("{}", choice);
     match choice.as_str().trim() {
-        "1" => {create_location();},
-        _ => {crate::main_menu();},
+        "1" => {
+            create_location();
+        }
+        _ => {
+            crate::main_menu();
+        }
     }
 }
 
@@ -29,20 +33,20 @@ fn create_location() -> io::Result<()> {
         println!("What location is this scene in? (type '0' if no location)");
         location = crate::input_value(">> ").trim().to_owned();
         if is_valid_filename(&location.as_str()) {
-            break
+            break;
         }
-        println!("That isn't a valid file name.\n Don't use special characters except for '-' and '_'");
+        println!(
+            "That isn't a valid file name.\n Don't use special characters except for '-' and '_'"
+        );
     }
-
-    
 
     println!("Creating template scene file...");
 
-    if !Path::new(("src/scenes/".to_string() + &location.to_string() + "/mod.rs").as_str()).exists() {
+    if !Path::new(("src/scenes/".to_string() + &location.to_string() + "/mod.rs").as_str()).exists()
+    {
         println!("New location");
         fs::create_dir("src/scenes/".to_owned() + &location.to_string())?;
-
-    }else {
+    } else {
         println!("Location Exists");
     }
 
@@ -73,7 +77,7 @@ pub fn menu() {
         }
 
     }
-}   
+}
 
 fn option_1() {
     println!("option_1");
@@ -102,41 +106,46 @@ fn option_4() {
     let mut output = Vec::new();
     let target_line = "// Add scenes here";
 
-    if !Path::new(("src/scenes/".to_string() + &location.to_string() + "/mod.rs").as_str()).exists() {
+    if !Path::new(("src/scenes/".to_string() + &location.to_string() + "/mod.rs").as_str()).exists()
+    {
         println!("New location");
         output.push("pub mod ".to_owned() + &location + ";");
         File::create("src/scenes/".to_owned() + &location + "/mod.rs");
-
-    }else {
+    } else {
         println!("Location Exists");
     }
 
     for line in scene_manager.lines() {
         output.push(line.to_string());
         if line == target_line {
-            output.push(format!(r#"        "{1}" => {0}::load_{1}(),"#, location, name));
+            output.push(format!(
+                r#"        "{1}" => {0}::load_{1}(),"#,
+                location, name
+            ));
         }
     }
-    
+
     let scene_manager_file = File::create("src/scenes.rs")?;
     let mut writer = BufWriter::new(scene_manager_file);
     for line in output {
         writeln!(writer, "{}", line);
     }
-    
+
     println!("Creating Location mod.rs file");
-    let location_mod = read_to_string(("src/scenes/".to_string() + &location.to_string() + "/mod.rs").as_str())?;
-    
+    let location_mod =
+        read_to_string(("src/scenes/".to_string() + &location.to_string() + "/mod.rs").as_str())?;
+
     let mut mod_output = Vec::new();
     let i_hate_formatting = "mod ~; pub fn load_~() { ~::load(); }";
     let formatted_bullshit = &i_hate_formatting.replace("~", &name);
     mod_output.push(formatted_bullshit.to_owned());
-    
+
     for line in location_mod.lines() {
         mod_output.push(line.to_string());
     }
 
-    let location_mod_file = File::create(("src/scenes/".to_string() + &location.to_string() + "/mod.rs").as_str())?;
+    let location_mod_file =
+        File::create(("src/scenes/".to_string() + &location.to_string() + "/mod.rs").as_str())?;
     let mut mod_writer = BufWriter::new(location_mod_file);
     for line in mod_output {
         writeln!(mod_writer, "{}", line);
@@ -153,5 +162,3 @@ fn is_valid_filename(name: &str) -> bool {
     }
     !name.chars().any(|c| INVALID_CHARS.contains(&c))
 }
-
-
