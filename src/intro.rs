@@ -23,8 +23,7 @@ pub fn begin() {
             .expect("Oops");
         
         'sure: loop{
-            println!("\nYour name is {}? [y/n]", name.trim());
-            print!(">> ");
+            println!("\n\nYour name is {}?", name.trim());
             io::stdout().flush().expect("Failed to flush");
 
             match crate::y_n() {
@@ -39,6 +38,7 @@ pub fn begin() {
     println!("Now I have a grandson... But I can't for the life of me remember his name.");
     let mut rival_name = String::new();
     'name: loop {
+        rival_name = String::new();
         print!("\nWhat is my grandson's name?\n>> ");
         io::stdout().flush().expect("Failed to flush");
         io::stdin()
@@ -46,8 +46,7 @@ pub fn begin() {
             .expect("Oops");
         rival_name = rival_name.trim().to_string();
         'sure: loop{
-            println!("\nHis name is {}? [y/n]", rival_name.trim());
-            print!(">> ");
+            println!("\n\nHis name is {}?", rival_name.trim());
             io::stdout().flush().expect("Failed to flush");
 
             match crate::y_n() {

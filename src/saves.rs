@@ -5,8 +5,10 @@ use std::io::{self, BufWriter, Write};
 
 #[derive(Serialize, Deserialize)]
 struct Save {
+    top: String,
     prev_scene: String,
     current_scene: String,
+    bottom: String
 }
 
 pub fn get_prev_scene() -> Result<String, io::Error> {
@@ -37,4 +39,8 @@ pub fn save_game(current_scene: &str) -> Result<String, io::Error> {
     }
 
     Ok(current_scene.to_string())
+}
+
+pub fn refresh_pokeapi_data() {
+    println!("refreshing...");
 }

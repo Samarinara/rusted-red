@@ -1,5 +1,6 @@
+use crate::data_management;
 use std::fs::{self, File, read_to_string};
-use std::io::{self, BufWriter, Write};
+use std::io::{self, BufWriter, Read, Write};
 use std::path::Path;
 
 const INVALID_CHARS: &[char] = &['<', '>', ':', '"', '/', '\\', '|', '?', '*', '.'];
@@ -10,6 +11,7 @@ pub fn edit_scenes() {
     println!("1) Create Location");
     println!("2) Create Route -TBD");
     println!("3) Delete Scene -TBD");
+    println!("4) Create Database from CSV");
     println!("0) Return to main menu");
 
     let choice = crate::input_value(">> ");
@@ -17,6 +19,50 @@ pub fn edit_scenes() {
     match choice.as_str().trim() {
         "1" => {
             create_location();
+        }
+        "2" => {
+            //create_route();
+        }
+        "3" => {
+            //delete_scene();
+        }
+        "4" => {
+            println!("1) Create Table");
+            println!("2) Add Dummy Row");
+            println!("3) Remove Table");
+            println!("0) Return to main menu");
+            let choice = crate::input_value(">> ");
+            println!("{}", choice);
+            match choice.as_str().trim() {
+                "1" => {
+                    match data_management::create_database_from_csv(
+                        "game_data/sql/database.db",
+                        "game_data/csv/pokemon.csv",
+                    ) {
+                        Ok(_) => println!("Database created successfully"),
+                        Err(e) => println!("Error creating database: {}", e),
+                    }
+                }
+                "2" => {
+                    print!("not done");
+                }
+                "3" => {
+                    print!("Enter table name to remove: ");
+                    let table_name = crate::input_value(">> ").trim().to_owned();
+                    data_management::remove_table("game_data/sql/database.db", &table_name)
+                        .unwrap();
+                    edit_scenes();
+                }
+                "0" => {
+                    crate::main_menu();
+                }
+                _ => {
+                    println!("Invalid choice");
+                }
+            }
+        }
+        "0" => {
+            crate::main_menu();
         }
         _ => {
             crate::main_menu();

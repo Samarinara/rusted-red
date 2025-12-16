@@ -1,8 +1,11 @@
 {
+  "top": "default",
 
-  "prev_scene": "pallet_town_outside",
+  "prev_scene": "player_house",
 
-  "current_scene": "player_house"
+  "current_scene": "pallet_town_outside",
 
+  "tutorial_state": "no_oak",
+
+  "bottom": "default"
 }
-
